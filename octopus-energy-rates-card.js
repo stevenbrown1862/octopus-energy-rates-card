@@ -217,7 +217,7 @@ class OctopusEnergyRatesCard extends HTMLElement {
             highlimit: 30,
             lowlimit: 8,
             // Controls the rounding of the units of the rate
-            roundUnits: 2,
+            roundUnits: 3,
             // The unit string to show if units are shown after each rate
             unitstr: 'p/kWh',
             // Make the colouring happen in reverse, for export rates
