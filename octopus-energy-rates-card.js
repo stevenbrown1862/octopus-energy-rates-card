@@ -50,6 +50,9 @@ class OctopusEnergyRatesCard extends HTMLElement {
             td.time_blue{
                 border-bottom: 1px solid #391CD9;
             }
+            td.time_pink{
+                border-bottom: 1px solid pink;
+            }
             td.rate {
                 color:white;
                 text-align:center;
@@ -71,6 +74,10 @@ class OctopusEnergyRatesCard extends HTMLElement {
                 border: 2px solid MediumSeaGreen;
                 background-color: MediumSeaGreen;
             }
+            td.pink {
+                border: 2px solid pink;
+                background-color: pink;
+            }
             td.blue {
                 border: 2px solid #391CD9;
                 background-color: #391CD9;
@@ -81,7 +88,7 @@ class OctopusEnergyRatesCard extends HTMLElement {
             this.appendChild(card);
         }
 
-        const colours_import = [ 'green', 'red', 'orange', 'blue' ];
+        const colours_import = [ 'green', 'red', 'orange', 'blue', 'pink' ];
         const colours_export = [ 'red', 'green', 'orange' ];
 
         const entityId = config.entity;
@@ -136,9 +143,10 @@ class OctopusEnergyRatesCard extends HTMLElement {
             // If the showday config option is set, include the shortened weekday name in the user's Locale
             var date_locale = (showday ? date.toLocaleDateString(lang, { weekday: 'short' }) + ' ' : '');
 
-            var colour = colours[0];
+            var colour = colours[4];
             if(key.value_inc_vat > config.highlimit) colour = colours[1];
             else if(key.value_inc_vat > config.mediumlimit) colour = colours[2];
+            else if(key.value_inc_vat > config.lowlimit) colour = colours[0];
             else if(key.value_inc_vat <= 0 ) colour = colours[3];
 
             if(showpast || (date - Date.parse(new Date())>-1800000)) {
@@ -207,6 +215,7 @@ class OctopusEnergyRatesCard extends HTMLElement {
             // If the price is below 0, the row is marked blue.
             mediumlimit: 20,
             highlimit: 30,
+            lowlimit: 8,
             // Controls the rounding of the units of the rate
             roundUnits: 2,
             // The unit string to show if units are shown after each rate
