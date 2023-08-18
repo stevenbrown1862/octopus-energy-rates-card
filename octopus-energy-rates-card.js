@@ -137,7 +137,7 @@ class OctopusEnergyRatesCard extends HTMLElement {
             const date_milli = Date.parse(key.valid_from);
             var date = new Date(date_milli);
             const lang = navigator.language || navigator.languages[0];
-            var options = {hourCycle: 'h23', hour12: hour12, hour: '2-digit', minute:'2-digit'};
+            var options = {hourCycle: 'h23', hour12: false, hour: '2-digit', minute:'2-digit'};
             // The time formatted in the user's Locale
             var time_locale = date.toLocaleTimeString(lang, options);
             // If the showday config option is set, include the shortened weekday name in the user's Locale
